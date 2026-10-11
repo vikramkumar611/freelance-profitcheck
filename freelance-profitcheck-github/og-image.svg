@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" rx="28" fill="#f4f0ea"/>
+  <rect x="72" y="72" width="1056" height="486" rx="28" fill="#fff" stroke="#dfe4e1" stroke-width="3"/>
+  <rect x="130" y="142" width="74" height="74" rx="18" fill="#0f7a6e"/>
+  <g fill="#fff"><rect x="148" y="160" width="16" height="16" rx="3"/><rect x="171" y="160" width="16" height="16" rx="3"/><rect x="148" y="183" width="16" height="16" rx="3"/><rect x="171" y="183" width="16" height="16" rx="3"/></g>
+  <text x="232" y="174" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0d2d38">Freelance ProfitCheck India</text>
+  <text x="130" y="315" font-family="Arial, sans-serif" font-size="62" font-weight="700" fill="#0d2d38">Know your real project profit</text>
+  <text x="130" y="382" font-family="Arial, sans-serif" font-size="34" fill="#0f7a6e">before you quote.</text>
+  <text x="130" y="474" font-family="Arial, sans-serif" font-size="24" fill="#557581">Fees · expenses · take-home · target quote</text>
+</svg>

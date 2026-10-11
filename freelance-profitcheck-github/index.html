@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freelance ProfitCheck India | Project Profit Calculator</title>
+    <meta name="description" content="Estimate freelance project take-home, fees, expenses and hourly earnings in INR. Calculate a target-profit quote with this free browser-based tool." />
+    <meta name="theme-color" content="#f4f0ea" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Freelance ProfitCheck India" />
+    <meta property="og:description" content="Know your real project profit before you quote." />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="og-image.svg" />
+    <meta property="og:image:alt" content="Freelance ProfitCheck India project profit calculator" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="site-config.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand-wrap" href="./dist/" aria-label="Freelance ProfitCheck India home">
+          <div class="brand-mark" aria-label="Freelance ProfitCheck logo">
+            <span class="cell cell-a"></span>
+            <span class="cell cell-b"></span>
+            <span class="cell cell-c"></span>
+            <span class="cell cell-d"></span>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">Freelance</span>
+            <span class="brand-name accent">ProfitCheck</span>
+          </div>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links">Menu</button>
+          <div class="nav-links" id="primary-links">
+            <a href="./dist/" class="active" aria-current="page">Calculator</a>
+            <a href="./dist/guides/">Guides</a>
+            <a href="./dist/how-it-works/">How it works</a>
+            <a href="./dist/about/">About</a>
+          </div>
+        </nav>
+
+        <a class="save-btn" href="#calculator-actions">Estimate tools</a>
+      </header>
+
+      <main class="content" id="main">
+        <section class="hero">
+          <div class="badge">Built for Indian Freelancers</div>
+          <h1>Know your real<br /><span>project profit.</span></h1>
+          <p>Calculate fees, expenses, and take-home earnings before you quote.</p>
+        </section>
+
+        <section class="calculator-panel" id="calculator" aria-label="Freelance profit calculators">
+          <div class="card calculator-card">
+            <div class="card-header">
+              <div class="card-icon" aria-hidden="true">◫</div>
+              <h2>Freelance Profit Calculator</h2>
+            </div>
+            <p class="card-subtitle">Enter your details below to see your true profit and get a smart quote.</p>
+
+            <form id="profitForm" novalidate>
+              <div class="field-grid">
+              <label class="field">
+                <span>Project price (₹)</span>
+                <div class="input-wrap">
+                  <input id="projectPrice" name="projectPrice" type="number" value="50000" min="0" max="1000000000000" step="any" inputmode="decimal" aria-describedby="profitError" />
+                  <span class="currency">₹</span>
+                </div>
+              </label>
+
+              <label class="field">
+                <span>Platform fee (%)</span>
+                <div class="input-wrap">
+                  <input id="platformFee" name="platformFee" type="number" value="10" min="0" max="99.9" step="any" inputmode="decimal" aria-describedby="profitError" />
+                  <span class="suffix">%</span>
+                </div>
+              </label>
+
+              <label class="field">
+                <span>Payment fee (%)</span>
+                <div class="input-wrap">
+                  <input id="paymentFee" name="paymentFee" type="number" value="2" min="0" max="99.9" step="any" inputmode="decimal" aria-describedby="profitError" />
+                  <span class="suffix">%</span>
+                </div>
+              </label>
+
+              <label class="field">
+                <span>Project expenses (₹)</span>
+                <div class="input-wrap">
+                  <input id="projectExpenses" name="projectExpenses" type="number" value="3500" min="0" max="1000000000000" step="any" inputmode="decimal" aria-describedby="profitError" />
+                  <span class="currency">₹</span>
+                </div>
+              </label>
+
+              <label class="field">
+                <span>Estimated hours</span>
+                <div class="input-wrap">
+                  <input id="estimatedHours" name="estimatedHours" type="number" value="40" min="0" max="1000000000000" step="any" inputmode="decimal" aria-describedby="profitError" />
+                </div>
+              </label>
+
+              <label class="field">
+                <span>Tax estimate (optional)</span>
+                <div class="input-wrap">
+                  <input id="taxEstimate" name="taxEstimate" type="number" value="0" min="0" max="99.9" step="any" inputmode="decimal" aria-describedby="profitError" />
+                  <span class="suffix">%</span>
+                </div>
+              </label>
+              </div>
+              <p class="validation-message" id="profitError" role="alert" aria-live="polite"></p>
+            </form>
+
+            <div class="results-box">
+              <div class="results-header">
+                <div class="result-label-wrap">
+                  <div class="mini-icon">◔</div>
+                  <span class="result-label" id="resultLabel">Estimated take-home</span>
+                </div>
+                <div class="rate-box">
+                  <div class="mini-icon small">◔</div>
+                  <div>
+                    <span class="muted">Effective hourly earnings</span>
+                    <strong id="effectiveRate">₹1,012/hr</strong>
+                  </div>
+                </div>
+                <div class="deduction-box">
+                  <div class="mini-icon small">◫</div>
+                  <div>
+                    <span class="muted">Total deductions</span>
+                    <strong id="totalDeductions">₹9,500</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="amount-row">
+                <div class="keep-amount" id="keepAmount">₹40,500</div>
+              </div>
+              <p class="shortfall-message" id="shortfallMessage" role="status" hidden></p>
+              <dl class="breakdown-grid" aria-live="polite">
+                <div><dt>Platform fee</dt><dd id="platformFeeAmount">₹5,000</dd></div>
+                <div><dt>Payment fee</dt><dd id="paymentFeeAmount">₹1,000</dd></div>
+                <div><dt>Project expenses</dt><dd id="expensesAmount">₹3,500</dd></div>
+                <div><dt>Estimated tax</dt><dd id="taxAmount">₹0</dd></div>
+              </dl>
+
+              <div class="progress-wrap" id="progressWrap" aria-label="Profit percentage">
+                <div class="progress-bar" role="progressbar" aria-label="Estimated take-home share" aria-valuemin="0" aria-valuemax="100" aria-valuenow="81" id="progressBar">
+                  <span id="progressFill"></span>
+                </div>
+              </div>
+
+              <div class="percentages">
+                <span id="percentKeep">81.0% of your project price is estimated take-home</span>
+                <span id="percentLoss">19.1% goes to fees, expenses &amp; tax</span>
+              </div>
+            </div>
+            <div class="calculator-actions" id="calculator-actions" aria-label="Estimate actions">
+              <button type="button" class="secondary-btn" id="resetButton">Reset</button>
+              <button type="button" class="secondary-btn" id="saveButton">Save in this browser</button>
+              <button type="button" class="secondary-btn" id="restoreButton">Restore saved</button>
+              <button type="button" class="secondary-btn" id="copyButton">Copy summary</button>
+              <button type="button" class="secondary-btn" id="printButton">Print estimate / Save as PDF</button>
+              <button type="button" class="secondary-btn" id="createInvoiceButton">Create invoice</button>
+            </div>
+            <p class="privacy-hint">Saved estimates stay in this browser. Print the estimate or create a separate customer invoice.</p>
+            <p class="status-message" id="actionStatus" role="status" aria-live="polite"></p>
+          </div>
+
+          <aside class="card quote-card">
+            <div class="card-header align-left">
+              <div class="card-icon quote-icon" aria-hidden="true">◎</div>
+              <h2>Quote for your<br />target profit</h2>
+            </div>
+            <p class="card-subtitle tight">Want to earn a specific amount?<br />See what you should charge.</p>
+
+            <label class="field quote-field">
+              <span>Target take-home (₹)</span>
+              <div class="input-wrap">
+                <input id="targetTakehome" name="targetTakehome" type="number" value="45000" min="0" max="1000000000000" step="any" inputmode="decimal" aria-describedby="quoteError" />
+                <span class="currency">₹</span>
+              </div>
+            </label>
+
+            <p class="validation-message" id="quoteError" role="alert" aria-live="polite"></p>
+            <button class="primary-btn" type="button" id="calculateQuoteBtn">Calculate suggested quote</button>
+
+            <div class="quote-result">
+              <p>Suggested quote (₹)</p>
+              <div class="quote-amount" id="suggestedQuote">₹55,556</div>
+              <small id="quoteNote">Estimate based on the entered fee, expense and tax assumptions.</small>
+              <dl class="quote-breakdown">
+                <div><dt>Combined fee rate</dt><dd id="quoteFees">12%</dd></div>
+                <div><dt>Project expenses</dt><dd id="quoteExpenses">₹3,500</dd></div>
+                <div><dt>Estimated tax rate</dt><dd id="quoteTax">0%</dd></div>
+              </dl>
+            </div>
+            <p class="formula-note">Suggested quote = (target take-home ÷ (1 − tax rate) + project expenses) ÷ (1 − combined fee rate). Assumes percentage fees apply to the quote and tax applies to positive profit after fees and expenses; this remains an estimate, not a guarantee.</p>
+          </aside>
+        </section>
+
+        <ad-slot data-ad-slot="home-inline" aria-label="Advertisement"></ad-slot>
+        <section class="promo-banner earning-banner" aria-labelledby="earnings-tip-title">
+          <div class="promo-icon" aria-hidden="true">₹</div>
+          <div>
+            <p class="promo-kicker">Earnings planning</p>
+            <h3 id="earnings-tip-title">Know your estimated take-home</h3>
+            <p>Account for platform fees, project expenses and working hours before you quote.</p>
+          </div>
+          <a class="primary-link" href="#calculator">Check your estimate</a>
+        </section>
+
+        <section class="example-panel" aria-labelledby="example-title">
+          <h2 id="example-title">A simple example</h2>
+          <p>For a ₹50,000 project with 10% platform fees, 2% payment fees, ₹3,500 expenses, 0% estimated tax, and 40 hours of work:</p>
+          <p><strong>₹50,000 − ₹5,000 − ₹1,000 − ₹3,500 = ₹40,500 estimated take-home</strong>, or about ₹1,013 per hour. Change any input above to model your own situation.</p>
+        </section>
+
+        <section class="how-it-works">
+          <h2>How it works</h2>
+          <p>Enter your quote, account for costs, then review the estimate.</p>
+
+          <div class="steps-grid">
+            <article class="step-card">
+              <div class="step-icon green">☰</div>
+              <h3>1. Enter your quote</h3>
+              <p>Enter the amount you plan to charge and the time you expect to spend.</p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-icon teal">⚙</div>
+              <h3>2. Add fees and costs</h3>
+              <p>Use your actual platform/payment fee estimates and project costs. Tax is optional.</p>
+            </article>
+
+            <article class="step-card">
+              <div class="step-icon gold">▣</div>
+              <h3>3. See your true profit</h3>
+              <p>See your estimated take-home and hourly earnings, then calculate a target quote.</p>
+            </article>
+          </div>
+        </section>
+        <section class="below-links" aria-label="More information">
+          <h2>Make your next quote with confidence</h2>
+          <p>Read practical guides on <a href="./dist/guides/project-pricing/">pricing a freelance project</a>, <a href="./dist/guides/platform-fees/">understanding platform fees</a>, <a href="./dist/guides/hourly-rate/">calculating your hourly rate</a>, <a href="./dist/guides/project-expenses/">estimating expenses</a>, and <a href="./dist/guides/avoid-underpricing/">avoiding underpricing</a>.</p>
+          <p>Learn <a href="./dist/how-it-works/">how the calculator works</a> and review the <a href="./dist/terms/">estimate disclaimer</a>.</p>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-brand">
+          <div class="brand-mark small-mark" aria-hidden="true">
+            <span class="cell cell-a"></span>
+            <span class="cell cell-b"></span>
+            <span class="cell cell-c"></span>
+            <span class="cell cell-d"></span>
+          </div>
+          <span>Freelance ProfitCheck India</span>
+        </div>
+
+        <div class="footer-links">
+          <a href="./dist/privacy/">Privacy</a>
+          <a href="./dist/terms/">Terms &amp; disclaimer</a>
+          <a href="./dist/contact/">Contact</a>
+          <a href="./dist/about/">About</a>
+        </div>
+
+        <div class="footer-note">Estimates only—not tax, legal, accounting, or financial advice.</div>
+      </footer>
+    </div>
+
+    <section class="estimate-print-surface" id="estimatePrintSurface" hidden aria-label="Printable profit estimate">
+      <header class="estimate-print-header">
+        <p>Freelance ProfitCheck India</p>
+        <h1>Project profit estimate</h1>
+        <p id="printEstimateDate"></p>
+      </header>
+      <section>
+        <h2>Assumptions</h2>
+        <dl class="estimate-print-grid">
+          <div><dt>Project price</dt><dd id="printProjectPrice"></dd></div>
+          <div><dt>Platform fee rate</dt><dd id="printPlatformRate"></dd></div>
+          <div><dt>Payment fee rate</dt><dd id="printPaymentRate"></dd></div>
+          <div><dt>Estimated hours</dt><dd id="printHours"></dd></div>
+          <div><dt>Estimated tax rate</dt><dd id="printTaxRate"></dd></div>
+        </dl>
+      </section>
+      <section>
+        <h2>Estimated calculation</h2>
+        <dl class="estimate-print-grid">
+          <div><dt>Platform fee</dt><dd id="printPlatformAmount"></dd></div>
+          <div><dt>Payment fee</dt><dd id="printPaymentAmount"></dd></div>
+          <div><dt>Project expenses</dt><dd id="printExpenses"></dd></div>
+          <div><dt>Estimated tax</dt><dd id="printTaxAmount"></dd></div>
+          <div><dt>Take-home</dt><dd id="printTakehome"></dd></div>
+          <div><dt>Effective hourly earnings</dt><dd id="printHourly"></dd></div>
+          <div><dt>Estimated shortfall</dt><dd id="printShortfall"></dd></div>
+          <div><dt>Suggested quote</dt><dd id="printQuote"></dd></div>
+        </dl>
+      </section>
+      <p class="estimate-print-disclaimer">Planning estimate only, based on the assumptions shown. It is not tax, legal, accounting, or financial advice, and is not a guarantee of earnings. Verify actual provider fees, project costs, tax treatment, and quote terms.</p>
+    </section>
+
+    <dialog class="invoice-dialog" id="invoiceDialog" aria-labelledby="invoiceDialogTitle">
+      <div class="invoice-dialog-header">
+        <div>
+          <p class="promo-kicker">Print or save as PDF</p>
+          <h2 id="invoiceDialogTitle">Create an invoice</h2>
+        </div>
+        <button type="button" class="dialog-close secondary-btn" id="closeInvoiceDialog" aria-label="Close invoice creator">Close</button>
+      </div>
+      <p class="invoice-disclaimer">Fill in accurate seller, customer, service and payment details. Tax fields are optional estimates. This editable template is not a guarantee of GST or other legal compliance.</p>
+      <form id="invoiceForm" novalidate>
+        <fieldset class="invoice-style-picker">
+          <legend>Choose an invoice design</legend>
+          <div class="invoice-style-options">
+            <label class="invoice-style-option">
+              <input type="radio" name="invoiceStyle" value="classic" checked />
+              <span class="style-sample classic-sample" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span><strong>Classic</strong><small>Formal and balanced</small></span>
+            </label>
+            <label class="invoice-style-option">
+              <input type="radio" name="invoiceStyle" value="modern" />
+              <span class="style-sample modern-sample" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span><strong>Modern</strong><small>Bold green header</small></span>
+            </label>
+            <label class="invoice-style-option">
+              <input type="radio" name="invoiceStyle" value="minimal" />
+              <span class="style-sample minimal-sample" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span><strong>Minimal</strong><small>Simple and clean</small></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="invoice-form-grid">
+          <fieldset class="invoice-fields">
+            <legend>Your business</legend>
+            <label class="field"><span>Business / freelancer name *</span><input id="invoiceSeller" name="seller" required maxlength="120" autocomplete="organization" /></label>
+            <label class="field"><span>Logo (optional, image up to 2 MB)</span><input id="invoiceLogo" name="logo" type="file" accept="image/png,image/jpeg,image/webp" /></label>
+            <label class="field"><span>Email (optional)</span><input id="invoiceSellerEmail" name="sellerEmail" type="email" maxlength="160" autocomplete="email" /></label>
+            <label class="field"><span>Phone (optional)</span><input id="invoiceSellerPhone" name="sellerPhone" type="tel" maxlength="40" autocomplete="tel" /></label>
+            <label class="field"><span>Website (optional)</span><input id="invoiceSellerWebsite" name="sellerWebsite" type="url" maxlength="200" placeholder="https://example.com" autocomplete="url" /></label>
+            <label class="field"><span>Business address *</span><textarea id="invoiceSellerAddress" name="sellerAddress" required maxlength="500" rows="3" autocomplete="street-address"></textarea></label>
+            <label class="field"><span>GSTIN / tax ID (optional)</span><input id="invoiceSellerTaxId" name="sellerTaxId" maxlength="50" /></label>
+          </fieldset>
+
+          <fieldset class="invoice-fields">
+            <legend>Bill to</legend>
+            <label class="field"><span>Customer / business name *</span><input id="invoiceCustomer" name="customer" required maxlength="120" autocomplete="off" /></label>
+            <label class="field"><span>Email (optional)</span><input id="invoiceCustomerEmail" name="customerEmail" type="email" maxlength="160" autocomplete="off" /></label>
+            <label class="field"><span>Billing address *</span><textarea id="invoiceCustomerAddress" name="customerAddress" required maxlength="500" rows="3" autocomplete="off"></textarea></label>
+            <label class="field"><span>Customer GSTIN / tax ID (optional)</span><input id="invoiceCustomerTaxId" name="customerTaxId" maxlength="50" /></label>
+          </fieldset>
+
+          <fieldset class="invoice-fields">
+            <legend>Invoice details</legend>
+            <label class="field"><span>Invoice number *</span><input id="invoiceNumber" name="invoiceNumber" required maxlength="40" /></label>
+            <label class="field"><span>Invoice date *</span><input id="invoiceDate" name="invoiceDate" type="date" required /></label>
+            <label class="field"><span>Due date (optional)</span><input id="invoiceDueDate" name="dueDate" type="date" /></label>
+          </fieldset>
+
+          <fieldset class="invoice-fields">
+            <legend>Items and services</legend>
+            <p class="invoice-field-help">Add one or more lines. Each line has its own description, optional HSN/SAC code, quantity, and rate.</p>
+            <div class="invoice-line-editor">
+              <table class="invoice-edit-table">
+                <thead><tr><th>Description *</th><th>HSN / SAC</th><th>Qty *</th><th>Rate (₹) *</th><th><span class="visually-hidden">Remove item</span></th></tr></thead>
+                <tbody id="invoiceLineItems"></tbody>
+              </table>
+            </div>
+            <button type="button" class="secondary-btn add-line-button" id="addInvoiceLine">Add another line</button>
+          </fieldset>
+
+          <fieldset class="invoice-fields">
+            <legend>Tax and payment</legend>
+            <label class="field"><span>Additional tax rate (%) (optional)</span><input id="invoiceTaxRate" name="taxRate" type="number" min="0" max="100" step="any" inputmode="decimal" value="0" /></label>
+            <label class="field"><span>Amount already paid (₹)</span><input id="invoicePaid" name="amountPaid" type="number" min="0" max="1000000000000" step="any" inputmode="decimal" value="0" /></label>
+            <label class="field"><span>Notes (optional)</span><textarea id="invoiceNotes" name="notes" maxlength="500" rows="3" placeholder="Add a thank-you note or other invoice notes"></textarea></label>
+            <label class="field"><span>Account holder / payee (optional)</span><input id="invoicePayee" name="payee" maxlength="120" autocomplete="off" /></label>
+            <label class="field"><span>Bank name (optional)</span><input id="invoiceBankName" name="bankName" maxlength="120" autocomplete="off" /></label>
+            <label class="field"><span>Account number (optional)</span><input id="invoiceAccountNumber" name="accountNumber" maxlength="40" autocomplete="off" /></label>
+            <label class="field"><span>IFSC / routing code (optional)</span><input id="invoiceIfsc" name="ifsc" maxlength="30" autocomplete="off" /></label>
+            <label class="field"><span>UPI ID (optional)</span><input id="invoiceUpi" name="upi" maxlength="120" autocomplete="off" /></label>
+            <label class="field"><span>Other payment instructions (optional)</span><textarea id="invoicePaymentTerms" name="paymentTerms" maxlength="300" rows="2" placeholder="Add payment terms or other instructions"></textarea></label>
+          </fieldset>
+        </div>
+
+        <p class="validation-message" id="invoiceError" role="alert" aria-live="polite"></p>
+        <div class="invoice-dialog-actions">
+          <button type="button" class="secondary-btn" id="cancelInvoice">Cancel</button>
+          <button type="button" class="primary-btn" id="previewInvoice">Preview invoice</button>
+        </div>
+      </form>
+
+      <section class="invoice-preview-wrap" id="invoicePreviewWrap" hidden aria-label="Invoice preview">
+        <article class="invoice-paper invoice-classic" id="invoicePreview">
+          <header class="invoice-paper-header">
+            <div class="invoice-seller-block"><img id="previewLogo" alt="" hidden /><div><h2 id="previewSeller">Business name</h2><p id="previewSellerAddress"></p><p id="previewSellerContact"></p><p id="previewSellerTaxId"></p></div></div>
+            <div class="invoice-meta"><p class="invoice-label">INVOICE</p><p>Invoice no. <strong id="previewNumber"></strong></p><p>Date <strong id="previewDate"></strong></p><p id="previewDueDateRow">Due date <strong id="previewDueDate"></strong></p><span class="invoice-status" id="previewStatus">PAYMENT DUE</span></div>
+          </header>
+          <section class="invoice-billto"><h3>Bill to</h3><p id="previewCustomer"></p><p id="previewCustomerAddress"></p><p id="previewCustomerContact"></p><p id="previewCustomerTaxId"></p></section>
+          <table class="invoice-table">
+            <thead><tr><th>Description</th><th>HSN / SAC</th><th class="invoice-number-cell">Quantity</th><th class="invoice-number-cell">Rate</th><th class="invoice-number-cell">Amount</th></tr></thead>
+            <tbody id="previewLineItems"></tbody>
+          </table>
+          <section class="invoice-bottom-grid">
+            <div class="invoice-information">
+              <section class="invoice-notes" id="previewNotesSection"><h3><span class="invoice-section-icon" aria-hidden="true">✎</span> Notes</h3><p id="previewNotes"></p></section>
+              <section class="invoice-payment" id="previewPaymentSection"><h3><span class="invoice-section-icon" aria-hidden="true">₹</span> Payment information</h3><p id="previewPaymentTerms"></p></section>
+            </div>
+            <section class="invoice-totals">
+              <h3 class="invoice-total-heading">Total due</h3>
+              <p><span>Subtotal</span><strong id="previewSubtotalTotal"></strong></p>
+              <p id="previewTaxRow"><span>Tax (<span id="previewTaxRate"></span>%)</span><strong id="previewTax"></strong></p>
+              <p><span>Invoice total</span><strong id="previewTotal"></strong></p>
+              <p><span>Amount paid</span><strong id="previewPaid"></strong></p>
+              <p class="invoice-total-due"><span>Balance due</span><strong id="previewBalance"></strong></p>
+            </section>
+          </section>
+          <footer class="invoice-paper-footer">Thank you for your business.</footer>
+        </article>
+        <p class="invoice-disclaimer">Review all particulars and applicable tax rules before sending. This template does not determine whether you must issue a GST tax invoice.</p>
+        <div class="invoice-dialog-actions">
+          <button type="button" class="secondary-btn" id="editInvoice">Edit details / design</button>
+          <button type="button" class="primary-btn" id="printInvoice">Print invoice / save PDF</button>
+        </div>
+      </section>
+    </dialog>
+    <section id="invoicePrintSurface" hidden aria-label="Printable customer invoice"></section>
+
+    <template id="advertisement-markup">
+      <ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </template>
+    <script src="site.js"></script>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
